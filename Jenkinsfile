@@ -48,6 +48,14 @@ pipeline {
         }
       }
     }
+
+    stage('Deploy - logstash') {
+      steps {
+        script {
+	  kubernetesDeploy(configs: "logstash-deployment.yaml", kubeconfigId: "mykubeconfig")
+        }
+      }
+    }
   }
 
 }
