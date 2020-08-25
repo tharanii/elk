@@ -16,10 +16,10 @@ pipeline {
         }
       }
     }
-    stage('Deploy logstash') {
+    stage('Deploy filebeat') {
       steps {
         script {
-	  kubernetesDeploy(configs: "logstash-deployment.yaml", kubeconfigId: "mykubeconfig")
+	  kubernetesDeploy(configs: "filebeat-ss.yaml", kubeconfigId: "mykubeconfig")
         }
       }
     }
