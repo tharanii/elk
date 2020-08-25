@@ -10,42 +10,42 @@ pipeline {
       }
     }
 
-    stage('Deploy Elastic') {
+    stage('Deploy - Elastic') {
       steps {
         script {
 	  kubernetesDeploy(configs: "elasticsearch.yaml", kubeconfigId: "mykubeconfig")
         }
       }
     }
-    stage('Deploy kibana') {
+    stage('Deploy - kibana') {
       steps {
         script {
 	  kubernetesDeploy(configs: "kibana.yaml", kubeconfigId: "mykubeconfig")
         }
       }
     }
-    stage('Deploy logstash') {
+    stage('Deploy - logstash') {
       steps {
         script {
 	  kubernetesDeploy(configs: "logstash.yaml", kubeconfigId: "mykubeconfig")
         }
       }
     }
-    stage('Deploy filebeat') {
+    stage('Deploy - filebeat') {
       steps {
         script {
 	  kubernetesDeploy(configs: "filebeat.yaml", kubeconfigId: "mykubeconfig")
         }
       }
     }
-    stage('Deploy metricbeat') {
+    stage('Deploy - metricbeat') {
       steps {
         script {
 	  kubernetesDeploy(configs: "metricbeat.yaml", kubeconfigId: "mykubeconfig")
         }
       }
     }
-    stage('Deploy currator') {
+    stage('Deploy - currator') {
       steps {
         script {
 	  kubernetesDeploy(configs: "curator-cronjob.yaml", kubeconfigId: "mykubeconfig")
