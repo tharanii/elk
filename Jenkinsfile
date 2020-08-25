@@ -10,7 +10,7 @@ pipeline {
       }
     }
 
-    stage('Deploy App') {
+    stage('Deploy Elastic') {
       steps {
         script {
 	  kubernetesDeploy(configs: "elasticsearch.yaml", kubeconfigId: "mykubeconfig")
@@ -21,6 +21,13 @@ pipeline {
       steps {
         script {
 	  kubernetesDeploy(configs: "kibana.yaml", kubeconfigId: "mykubeconfig")
+        }
+      }
+    }
+    stage('Deploy logstash') {
+      steps {
+        script {
+	  kubernetesDeploy(configs: "logstash.yaml", kubeconfigId: "mykubeconfig")
         }
       }
     }
