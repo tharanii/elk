@@ -9,18 +9,10 @@ pipeline {
         git url:'https://github.com/tharanii/elk.git', branch:'master'
       }
     }
-
-    stage('Deploy - Elastic') {
+    stage('Deploy - logstash') {
       steps {
         script {
-	  kubernetesDeploy(configs: "elasticsearch.yaml", kubeconfigId: "mykubeconfig")
-        }
-      }
-    }
-    stage('Deploy - kibana') {
-      steps {
-        script {
-	  kubernetesDeploy(configs: "kibana.yaml", kubeconfigId: "mykubeconfig")
+	  kubernetesDeploy(configs: "logstash.yaml", kubeconfigId: "mykubeconfig")
         }
       }
     }
