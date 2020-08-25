@@ -16,22 +16,6 @@ pipeline {
         }
       }
     }
-
-    stage('Deploy - logstash') {
-      steps {
-        script {
-	  kubernetesDeploy(configs: "logstash-deployment.yaml", kubeconfigId: "mykubeconfig")
-        }
-      }
-    }
-
-    stage('Deploy - kibana') {
-      steps {
-        script {
-	  kubernetesDeploy(configs: "kibana-deployment.yaml", kubeconfigId: "mykubeconfig")
-        }
-      }
-    }
     
     stage('Deploy - filebeat') {
       steps {
@@ -40,12 +24,22 @@ pipeline {
         }
       }
     }
+
     stage('Deploy - metricbeats') {
       steps {
         script {
 	  kubernetesDeploy(configs: "metricbeat-ds.yaml", kubeconfigId: "mykubeconfig")
         }
       }
+
+    stage('Deploy - kibana') {
+      steps {
+        script {
+	  kubernetesDeploy(configs: "kibana-deployment.yaml", kubeconfigId: "mykubeconfig")
+        }
+      }
+    }
+ 
     }
     stage('Deploy - currator') {
       steps {
