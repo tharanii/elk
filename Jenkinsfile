@@ -25,7 +25,7 @@ pipeline {
       }
     }
 
-    stage('Deploy - metricbeats') {
+    stage('Deploy - metricbeat') {
       steps {
         script {
 	  kubernetesDeploy(configs: "metricbeat-ds.yaml", kubeconfigId: "mykubeconfig")
