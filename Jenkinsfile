@@ -13,7 +13,6 @@ pipeline {
     stage('Deploy App') {
       steps {
         script {
-          kubernetesDeploy(configs: "elasticsearch.yaml", kubeconfigId: "mykubeconfig")
 	  kubernetesDeploy(configs: "kibana.yaml", kubeconfigId: "mykubeconfig")
         }
       }
