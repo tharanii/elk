@@ -16,11 +16,6 @@ pipeline {
 	  kubernetesDeploy(configs: "elasticsearch.yaml", kubeconfigId: "mykubeconfig")
         }
       }
-      steps {
-        script {
-	  kubernetesDeploy(configs: "logstash.yaml", kubeconfigId: "mykubeconfig")
-        }
-      }
     }
 
   }
