@@ -31,7 +31,27 @@ pipeline {
         }
       }
     }
-
+    stage('Deploy filebeat') {
+      steps {
+        script {
+	  kubernetesDeploy(configs: "filebeat.yaml", kubeconfigId: "mykubeconfig")
+        }
+      }
+    }
+    stage('Deploy metricbeat') {
+      steps {
+        script {
+	  kubernetesDeploy(configs: "metricbeat.yaml", kubeconfigId: "mykubeconfig")
+        }
+      }
+    }
+    stage('Deploy currator') {
+      steps {
+        script {
+	  kubernetesDeploy(configs: "curator-cronjob.yaml", kubeconfigId: "mykubeconfig")
+        }
+      }
+    }
   }
 
 }
