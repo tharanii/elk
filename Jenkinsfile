@@ -9,7 +9,6 @@ pipeline {
         git url:'https://github.com/tharanii/elk.git', branch:'master'
       }
     }
-  }
     stage('Deploy elastic') {
       steps {
         script {
@@ -47,5 +46,5 @@ pipeline {
         }
       }
     }
-    
   }
+}
