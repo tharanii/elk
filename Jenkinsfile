@@ -9,6 +9,7 @@ pipeline {
         git url:'https://github.com/tharanii/elk.git', branch:'master'
       }
     }
+
     stage('Deploy elastic') {
       steps {
         script {
@@ -16,12 +17,36 @@ pipeline {
         }
       }
     }
+
+    stage('Deploy logstash') {
+      steps {
+        script {
+	  kubernetesDeploy(configs: "logstash-deployment.yaml", kubeconfigId: "mykubeconfig")
+        }
+      }
+    }
+
     stage('Deploy filebeat') {
       steps {
         script {
-	  kubernetesDeploy(configs: "filebeat-ss.yaml", kubeconfigId: "mykubeconfig")
+	  kubernetesDeploy(configs: "filebeat-ds.yaml", kubeconfigId: "mykubeconfig")
         }
       }
+
+      stage('Deploy metricbeat') {
+      steps {
+        script {
+	  kubernetesDeploy(configs: "metricbeat-ds.yaml", kubeconfigId: "mykubeconfig")
+        }
+      }
+
+      stage('Deploy kibana') {
+      steps {
+        script {
+	  kubernetesDeploy(configs: "kibana-deployment.yaml", kubeconfigId: "mykubeconfig")
+        }
+      }
+    }
     }
   }
 
