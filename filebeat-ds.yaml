@@ -14,7 +14,7 @@ metadata:
   labels:
     k8s-app: filebeat
 rules:
-- apiGroups: [""] # "" indicates the core API group
+- apiGroups: [""] # "" indicates the core API gp 
   resources:
   - namespaces
   - pods
