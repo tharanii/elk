@@ -46,5 +46,12 @@ pipeline {
         }
       }
     }
+      stage('Deploy curator') {
+      steps {
+        script {
+	  kubernetesDeploy(configs: "curator-cronjob.yaml", kubeconfigId: "mykubeconfig")
+        }
+      }
+    }
   }
 }
